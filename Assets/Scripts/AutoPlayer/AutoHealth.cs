@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class AutoHealth : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 200;
-    private int health;
+    [SerializeField] public int maxHealth = 200;
+    public int health;
     public event Action OnDie;
 
     public bool IsDie = false;
