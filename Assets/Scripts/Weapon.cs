@@ -27,6 +27,16 @@ public class Weapon : MonoBehaviour
             health.TakeDamage(damage);
         }
 
+        if (other.TryGetComponent(out AutoHealth autoHealth))
+        {
+            autoHealth.TakeDamage(damage);
+        }
+
+        if (other.TryGetComponent(out EnemyHealth enemyHealth))
+        {
+            enemyHealth.TakeDamage(damage);
+        }
+
         if (other.TryGetComponent(out ForceReceiver forceReceiver))
         {
             Vector3 direction = (other.transform.position - myCollider.transform.position).normalized;

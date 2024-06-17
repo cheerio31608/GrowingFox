@@ -1,6 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class AutoPlayer : MonoBehaviour
 {
     [field: Header("Reference")]
     [field: SerializeField] public EnemySO Data { get; private set; }
@@ -13,8 +15,10 @@ public class Enemy : MonoBehaviour
     public Rigidbody Rigidbody { get; private set; }
     public Animator Animator { get; private set; }
     public CharacterController Controller { get; private set; }
-    public EnemyHealth health { get; private set; }
-    private EnemyStateMachine stateMachine;
+
+    public AutoHealth health { get; private set; }
+
+    private AutoPlayerStateMachine stateMachine;
 
     public ForceReceiver ForceReceiver { get; private set; }
 
@@ -26,9 +30,9 @@ public class Enemy : MonoBehaviour
         Animator = GetComponentInChildren<Animator>();
         Controller = GetComponent<CharacterController>();
         ForceReceiver = GetComponent<ForceReceiver>();
-        health = GetComponent<EnemyHealth>();
+        health = GetComponent<AutoHealth>();
 
-        stateMachine = new EnemyStateMachine(this);
+        stateMachine = new AutoPlayerStateMachine(this);
     }
 
     private void Start()
