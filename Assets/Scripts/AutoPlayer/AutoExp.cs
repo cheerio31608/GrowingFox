@@ -22,5 +22,6 @@ public class AutoExp : MonoBehaviour
             curExp = 0;
         }
         GameManager.Instance.UpdateExpUI();
+        GameManager.Instance.UpdateGoldUI();
     }
 }

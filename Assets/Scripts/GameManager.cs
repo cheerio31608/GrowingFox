@@ -9,20 +9,23 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public GameObject AutoPlayer { get; private set; }
+    public GameObject Enemy;
 
-    [SerializeField] private AutoHealth playerHealthSystem;
-    [SerializeField] private AutoExp playerExpSystem;
+    private AutoHealth playerHealthSystem;
+    private AutoExp playerExpSystem;
+    private int gold;
 
     [SerializeField] private TextMeshProUGUI waveText;
     [SerializeField] private Slider hpGaugeSlider;
     [SerializeField] private Slider expGaugeSlider;
     [SerializeField] private GameObject gameOverUI;
+    [SerializeField] private TextMeshProUGUI GoldText;
 
     private void Awake()
     {
         Instance = this;
 
-        AutoPlayer = GameObject.FindGameObjectWithTag("Player");
+        AutoPlayer = GameObject.FindGameObjectWithTag("Player");;
 
         playerHealthSystem = AutoPlayer.GetComponent<AutoHealth>();
         playerExpSystem = AutoPlayer.GetComponent<AutoExp>();
@@ -30,6 +33,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        gold = 0;
         hpGaugeSlider.value = 1;
         expGaugeSlider.value = 0;
     }
@@ -37,14 +41,18 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (GameObject.Find(Enemy.name + "(Clone)") == null)
+        {
+            // 프리팹 오브젝트가 존재하지 않으면, 새로운 오브젝트를 생성합니다.
+            Instantiate(Enemy);
+            Debug.Log(Enemy.name + " 프리팹이 생성되었습니다.");
+        }
     }
 
     public void UpdateHealthUI()
     {
-        Debug.Log($"MaxHealth: {playerHealthSystem.maxHealth}");
-        Debug.Log($"Health: {playerHealthSystem.health}");
-        hpGaugeSlider.value = playerHealthSystem.health / playerHealthSystem.maxHealth;
+        //hpGaugeSlider.value = playerHealthSystem.health / playerHealthSystem.maxHealth;
+        hpGaugeSlider.value -= 0.05f;
     }
 
     public void UpdateExpUI()
@@ -52,24 +60,26 @@ public class GameManager : MonoBehaviour
         expGaugeSlider.value = playerExpSystem.curExp / playerExpSystem.maxExp;
     }
 
+    public void UpdateGoldUI()
+    {
+        GoldText.text = gold.ToString();
+    }
+
     public void GameOver()
     {
         gameOverUI.SetActive(true);
     }
 
-    // 스테이지 진행로직에 얹어요!
-    private void UpdateWaveUI()
+    public void GetGold()
     {
-        // waveText.text = 
+        gold += 50;
     }
 
-    // 버튼에 연결될 함수 -> public으로!
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    // 버튼에 연결될 함수
     public void ExitGame()
     {
         Application.Quit();

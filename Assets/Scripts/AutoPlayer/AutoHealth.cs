@@ -33,6 +33,7 @@ public class AutoHealth : MonoBehaviour
             OnDie?.Invoke();
         }
 
+        //GameManager.Instance.hpGaugeSlider.value = health / maxHealth;
         GameManager.Instance.UpdateHealthUI();
         Debug.Log(health);
     }
