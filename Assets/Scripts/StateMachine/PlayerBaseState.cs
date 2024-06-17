@@ -14,12 +14,12 @@ public class PlayerBaseState : IState
 
     public virtual void Enter()
     {
-        //AddInputActionsCallbacks();
+       AddInputActionsCallbacks();
     }
 
     public virtual void Exit()
     {
-        //RemoveInputActionsCallbacks();
+        RemoveInputActionsCallbacks();
     }
 
     protected virtual void AddInputActionsCallbacks()

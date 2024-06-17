@@ -174,7 +174,10 @@ AnimatorTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: '@Ground'
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: -6202764096599404763}
   m_DstState: {fileID: 0}
   m_Solo: 0

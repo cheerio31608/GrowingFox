@@ -33,10 +33,7 @@ public class PlayerGroundState : PlayerBaseState
 
     protected override void OnMovementCanceled(InputAction.CallbackContext context)
     {
-        if (stateMachine.MovementInput == Vector2.zero)
-        {
-            return;
-        }
+        if (stateMachine.MovementInput == Vector2.zero) return;
 
         stateMachine.ChangeState(stateMachine.IdleState);
 
