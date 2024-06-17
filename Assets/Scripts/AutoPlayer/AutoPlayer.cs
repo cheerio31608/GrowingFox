@@ -56,7 +56,7 @@ public class AutoPlayer : MonoBehaviour
     void OnDie()
     {
         Animator.SetTrigger("Die");
-        Debug.Log("Die");
+        GameManager.Instance.GameOver();
         enabled = false;
     }
 }

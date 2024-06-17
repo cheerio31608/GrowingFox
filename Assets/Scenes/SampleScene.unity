@@ -2831,6 +2831,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebe53e08f04e1004dbe5ea8736376620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHealthSystem: {fileID: 0}
+  playerExpSystem: {fileID: 0}
   waveText: {fileID: 1147294725}
   hpGaugeSlider: {fileID: 661840451}
   expGaugeSlider: {fileID: 1257715264}
@@ -3157,7 +3159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 243086fac563457438ff873d06f647fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 200
   health: 0
   IsDie: 0
 --- !u!114 &1028168745

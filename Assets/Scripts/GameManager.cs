@@ -6,16 +6,31 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    private AutoHealth playerHealthSystem;
+    public static GameManager Instance;
+
+    public GameObject AutoPlayer { get; private set; }
+
+    [SerializeField] private AutoHealth playerHealthSystem;
+    [SerializeField] private AutoExp playerExpSystem;
 
     [SerializeField] private TextMeshProUGUI waveText;
     [SerializeField] private Slider hpGaugeSlider;
     [SerializeField] private Slider expGaugeSlider;
     [SerializeField] private GameObject gameOverUI;
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        Instance = this;
+
+        AutoPlayer = GameObject.FindGameObjectWithTag("Player");
+
+        playerHealthSystem = AutoPlayer.GetComponent<AutoHealth>();
+        playerExpSystem = AutoPlayer.GetComponent<AutoExp>();
+    }
+
     void Start()
     {
+        hpGaugeSlider.value = 1;
         expGaugeSlider.value = 0;
     }
 
@@ -25,12 +40,19 @@ public class GameManager : MonoBehaviour
         
     }
 
-    private void UpdateHealthUI()
+    public void UpdateHealthUI()
     {
+        Debug.Log($"MaxHealth: {playerHealthSystem.maxHealth}");
+        Debug.Log($"Health: {playerHealthSystem.health}");
         hpGaugeSlider.value = playerHealthSystem.health / playerHealthSystem.maxHealth;
     }
 
-    private void GameOver()
+    public void UpdateExpUI()
+    {
+        expGaugeSlider.value = playerExpSystem.curExp / playerExpSystem.maxExp;
+    }
+
+    public void GameOver()
     {
         gameOverUI.SetActive(true);
     }

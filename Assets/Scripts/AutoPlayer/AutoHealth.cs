@@ -7,13 +7,18 @@ public class AutoHealth : MonoBehaviour
     public int health;
     public event Action OnDie;
 
+
     public bool IsDie = false;
 
-
-    private void Start()
+    private void Awake()
     {
         health = maxHealth;
         IsDie = false;
+    }
+
+    private void Start()
+    {
+;
     }
 
     public void TakeDamage(int damage)
@@ -28,6 +33,7 @@ public class AutoHealth : MonoBehaviour
             OnDie?.Invoke();
         }
 
+        GameManager.Instance.UpdateHealthUI();
         Debug.Log(health);
     }
 }
