@@ -1482,6 +1482,7 @@ GameObject:
   - component: {fileID: 7666986768228434027}
   - component: {fileID: 7666986768228434026}
   - component: {fileID: 7666986768228434025}
+  - component: {fileID: 7666986768228434028}
   m_Layer: 0
   m_Name: Fox
   m_TagString: Untagged
@@ -2221,6 +2222,20 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0.11}
+--- !u!114 &7666986768228434028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4020983980247335078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 236bff4fdf67b3b4894e1378a190c048, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 0}
+  drag: 0.3
 --- !u!4 &7851351510238002076
 Transform:
   m_ObjectHideFlags: 0
