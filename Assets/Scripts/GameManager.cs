@@ -1,4 +1,5 @@
 
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -41,12 +42,21 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (GameObject.Find(Enemy.name + "(Clone)") == null)
         {
+            //StartCoroutine(SpawnEnemy());
             // 프리팹 오브젝트가 존재하지 않으면, 새로운 오브젝트를 생성합니다.
             Instantiate(Enemy);
             Debug.Log(Enemy.name + " 프리팹이 생성되었습니다.");
         }
+    }
+
+    IEnumerator SpawnEnemy()
+    {
+        yield return new WaitForSeconds(3);
+        Instantiate(Enemy);
+        Debug.Log(Enemy.name + " 프리팹이 생성되었습니다.");
     }
 
     public void UpdateHealthUI()
@@ -83,5 +93,15 @@ public class GameManager : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
+    }
+
+    public void HPBtn()
+    {
+        if(gold >= 5)
+        {
+            playerHealthSystem.health += 10;
+            hpGaugeSlider.value += 0.05f;
+            gold -= 5;
+        }
     }
 }
